@@ -4,6 +4,7 @@
 //
 //This comment proves that project is within workspace
 //  Created by Hendrik Tjoa on 3/25/20.
+//Google Maps SDK Key: AIzaSyDcloJazSsWlb0A5GDhERYjGyzHaYMIfas
 //
 /* https://www.appcoda.com/arkit-introduction-scenekit/ was source */
 /*https://guides.codepath.com/ios/Creating-Custom-View-Controllers */
