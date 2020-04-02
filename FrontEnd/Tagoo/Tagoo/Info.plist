@@ -22,6 +22,10 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>For Augmented Reality</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Must be used for user to get location</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Allow location</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

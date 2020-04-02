@@ -12,11 +12,13 @@
 import UIKit
 import ARKit
 import AVFoundation
+import GoogleMaps
+import CoreLocation
 
 
-class FinalViewController: UIViewController {
+class FinalViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate {
     
-
+    var locationManager = CLLocationManager()
     @IBOutlet weak var CamView: ARSCNView!
     @IBOutlet weak var Crosshair: UIImageView!
     
@@ -24,9 +26,39 @@ class FinalViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Location Manager code to fetch current location
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
+        if CLLocationManager.locationServicesEnabled() {
+          switch (CLLocationManager.authorizationStatus()) {
+            case .notDetermined, .restricted, .denied:
+              print("No access")
+            case .authorizedAlways, .authorizedWhenInUse:
+              print("Access")
+          }
+        } else {
+          print("Location services are not enabled")
+        }
         CamView.addSubview(Crosshair)
         self.coordinates.text = "I can change"
+        showCurrentLocation()
     }
+    
+    func showCurrentLocation() {
+        let locationObj = locationManager.location as! CLLocation
+        let coord = locationObj.coordinate
+        let lattitude = coord.latitude
+        let longitude = coord.longitude
+        self.coordinates.text = "\(lattitude)" + " " + "\(longitude)"
+    }
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

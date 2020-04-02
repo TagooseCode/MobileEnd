@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -95,7 +95,6 @@
 				4A11D7C79A416ECC31C6EFA5 /* Pods-Tagoo.debug.xcconfig */,
 				E9F762B071B5F7FD276AFED2 /* Pods-Tagoo.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
