@@ -18,6 +18,7 @@ import CoreLocation
 
 class FinalViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate {
     
+    var timer = Timer()
     var locationManager = CLLocationManager()
     @IBOutlet weak var CamView: ARSCNView!
     @IBOutlet weak var Crosshair: UIImageView!
@@ -43,10 +44,15 @@ class FinalViewController: UIViewController, GMSMapViewDelegate, CLLocationManag
         }
         CamView.addSubview(Crosshair)
         self.coordinates.text = "I can change"
-        showCurrentLocation()
+        scheduledTimerWithTimeInterval()
     }
     
-    func showCurrentLocation() {
+    func scheduledTimerWithTimeInterval(){
+        // Scheduling timer to Call the function "updateCounting" with the interval of 1 seconds
+        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.showCurrentLocation), userInfo: nil, repeats: true)
+    }
+    
+    @objc func showCurrentLocation() {
         let locationObj = locationManager.location as! CLLocation
         let coord = locationObj.coordinate
         let lattitude = coord.latitude
@@ -73,6 +79,7 @@ class FinalViewController: UIViewController, GMSMapViewDelegate, CLLocationManag
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         CamView.session.pause()
+        timer.invalidate()
     }
 }
     
