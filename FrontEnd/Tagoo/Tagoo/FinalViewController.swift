@@ -25,6 +25,7 @@ class FinalViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         CamView.addSubview(Crosshair)
+        self.coordinates.text = "I can change"
     }
     
     override func didReceiveMemoryWarning() {
