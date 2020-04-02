@@ -20,6 +20,8 @@ class FinalViewController: UIViewController {
     @IBOutlet weak var CamView: ARSCNView!
     @IBOutlet weak var Crosshair: UIImageView!
     
+    @IBOutlet weak var coordinates: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         CamView.addSubview(Crosshair)
