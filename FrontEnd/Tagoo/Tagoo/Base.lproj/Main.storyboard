@@ -23,6 +23,13 @@
                                 <rect key="frame" x="-0.96069868996187324" y="39.570596797700546" width="414.00000000000006" height="817.99999999999977"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </arscnView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="default" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jIi-NL-rMw">
+                                <rect key="frame" x="26" y="59" width="357" height="147"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -30,6 +37,7 @@
                     <connections>
                         <outlet property="CamView" destination="New-GG-5B1" id="88h-PJ-dwy"/>
                         <outlet property="Crosshair" destination="Xqq-Xx-lUj" id="vx5-GD-ZTJ"/>
+                        <outlet property="coordinates" destination="jIi-NL-rMw" id="O2R-ZD-oef"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
