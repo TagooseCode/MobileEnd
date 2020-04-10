@@ -35,6 +35,8 @@ class FinalViewController: UIViewController, GMSMapViewDelegate, CLLocationManag
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupAVCapture()
+        startCaptureSession()
         //Location Manager code to fetch current location
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -53,8 +55,6 @@ class FinalViewController: UIViewController, GMSMapViewDelegate, CLLocationManag
         CamView.addSubview(Crosshair)
         self.coordinates.text = "I can change"
         scheduledTimerWithTimeInterval()
-        setupAVCapture()
-        startCaptureSession()
     }
     
     func scheduledTimerWithTimeInterval(){
