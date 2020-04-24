@@ -24,9 +24,33 @@ class FinalViewController: UIViewController, GMSMapViewDelegate, CLLocationManag
     @IBOutlet weak var Crosshair: UIImageView!
     
     @IBOutlet weak var coordinates: UILabel!
+    private let session = AVCaptureSession()
+    
+
+    
+    
+
+    let videoDevice = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: .video, position: .back).devices.first;
+
+    var deviceInput : AVCaptureDeviceInput?
+    
+
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        do {
+            deviceInput = try AVCaptureDeviceInput(device: videoDevice!)
+        } catch {
+            print("Could not create video device input: \(error)")
+            return
+        }
+        guard session.canAddInput(deviceInput!) else {
+            print("Could not add video device input to the session")
+            session.commitConfiguration()
+            return
+        }
+        session.addInput(deviceInput!)
         //Location Manager code to fetch current location
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
