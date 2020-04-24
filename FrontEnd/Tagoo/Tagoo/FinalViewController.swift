@@ -12,18 +12,59 @@
 import UIKit
 import ARKit
 import AVFoundation
+import GoogleMaps
+import CoreLocation
 
 
-class FinalViewController: UIViewController {
+class FinalViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate {
     
-
+    var timer = Timer()
+    var locationManager = CLLocationManager()
     @IBOutlet weak var CamView: ARSCNView!
     @IBOutlet weak var Crosshair: UIImageView!
     
+    @IBOutlet weak var coordinates: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Location Manager code to fetch current location
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
+        if CLLocationManager.locationServicesEnabled() {
+          switch (CLLocationManager.authorizationStatus()) {
+            case .notDetermined, .restricted, .denied:
+              print("No access")
+            case .authorizedAlways, .authorizedWhenInUse:
+              print("Access")
+          }
+        } else {
+          print("Location services are not enabled")
+        }
         CamView.addSubview(Crosshair)
+        self.coordinates.text = "I can change"
+        scheduledTimerWithTimeInterval()
     }
+    
+    func scheduledTimerWithTimeInterval(){
+        // Scheduling timer to Call the function "updateCounting" with the interval of 1 seconds
+        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.showCurrentLocation), userInfo: nil, repeats: true)
+    }
+    
+    @objc func showCurrentLocation() {
+        let locationObj = locationManager.location as! CLLocation
+        let coord = locationObj.coordinate
+        let lattitude = coord.latitude
+        let longitude = coord.longitude
+        self.coordinates.text = "\(lattitude)" + " " + "\(longitude)"
+    }
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -38,6 +79,7 @@ class FinalViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         CamView.session.pause()
+        timer.invalidate()
     }
 }
     
